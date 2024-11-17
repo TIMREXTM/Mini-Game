@@ -1,0 +1,46 @@
+/* Grundlegende Stile */
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    background-color: #000; /* Schwarzer Hintergrund */
+    color: white;
+}
+
+/* Container für das Spiel */
+#game-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
+/* Willkommensnachricht */
+#welcome-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.8); /* Halbtransparenter Hintergrund */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+#welcome-message h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+#welcome-message p {
+    font-size: 1.2rem;
+    margin-top: 0;
+}
+
+/* Spielbereich */
+#game-3d-container {
+    width: 100%;
+    height: 100%;
+    display: block;
+}

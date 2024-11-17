@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Game Login</title>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+    <div class="login-container">
+        <h1>Login</h1>
+        <div class="input-container">
+            <label for="key">Key:</label>
+            <input type="text" id="key" placeholder="Gib deinen Key ein">
+        </div>
+        <button id="login-btn">Login</button>
+    </div>
+
+    <!-- Popup für Benachrichtigungen -->
+    <div id="notification" class="notification hidden">
+        <span id="notification-message"></span>
+        <button onclick="hideNotification()">OK</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+<style>/* style.css */
+
+    /* Grundlegende Reset-Stile */
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+    
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #282c34; /* Dunkler Hintergrund */
+        color: white; /* Weißer Text */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; /* Vollständige Höhe des Viewports */
+    }
+    
+    /* Hintergrundbild */
+    .background {
+        background-image: url('path/to/your/background-image.jpg'); /* Füge hier den Pfad zu deinem Hintergrundbild ein */
+        background-size: cover; /* Hintergrundbild anpassen */
+        background-position: center; /* Hintergrundbild zentrieren */
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+    
+    /* Container für das Login-Formular */
+    .login-container {
+        background-color: rgba(0, 0, 0, 0.7); /* Halbtransparenter schwarzer Hintergrund */
+        padding: 30px;
+        border-radius: 10px; /* Abgerundete Ecken */
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Schatten für Tiefe */
+        width: 300px; /* Feste Breite */
+        text-align: center; /* Text zentrieren */
+    }
+    
+    /* Überschrift */
+    h1 {
+        margin-bottom: 10px; /* Abstand nach unten */
+        font-size: 24px; /* Schriftgröße */
+    }
+    
+    h2 {
+        margin-bottom: 20px; /* Abstand nach unten */
+        font-size: 18px; /* Schriftgröße */
+    }
+    
+    /* Label-Stile */
+    label {
+        display: block; /* Label als Blockelement */
+        margin-bottom: 8px; /* Abstand nach unten */
+        font-weight: bold; /* Fetter Text */
+    }
+    
+    /* Eingabefeld-Stile */
+    input[type="text"] {
+        width: 100%; /* Volle Breite */
+        padding: 10px; /* Innenabstand */
+        margin-bottom: 15px; /* Abstand nach unten */
+        border: 1px solid #ccc; /* Graue Umrandung */
+        border-radius: 4px; /* Abgerundete Ecken */
+    }
+    
+    /* Button-Stile */
+    button {
+        background-color: #007bff; /* Blaue Hintergrundfarbe */
+        color: white; /* Weißer Text */
+        border: none; /* Keine Umrandung */
+        padding: 10px; /* Innenabstand */
+        border-radius: 4px; /* Abgerundete Ecken */
+        cursor: pointer; /* Zeiger-Cursor */
+        transition: background-color 0.3s; /* Übergang für Hover-Effekt */
+        width: 100%; /* Volle Breite */
+    }
+    
+    button:hover {
+        background-color: #0056b3; /* Dunklerer Blauton bei Hover */
+    }
+    
+    /* Popup-Stile für Benachrichtigungen */
+    .notification {
+        position: fixed; /* Feste Position */
+        top: 20px; /* Abstand vom oberen Rand */
+        right: 20px; /* Abstand vom rechten Rand */
+        background-color: #fff; /* Weißer Hintergrund */
+        border: 1px solid #ccc; /* Graue Umrandung */
+        border-radius: 8px; /* Abgerundete Ecken */
+        padding: 15px; /* Innenabstand */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Schatten für Tiefe */
+        z-index: 1000; /* Über anderen Elementen */
+    }
+    
+/* Popup-Stile für Benachrichtigungen */
+.notification {
+    position: fixed; /* Feste Position */
+    top: 20px; /* Abstand vom oberen Rand */
+    right: 20px; /* Abstand vom rechten Rand */
+    background-color: #00d9ff; /* Heller roter Hintergrund */
+    color: #721c24; /* Dunkelroter Text */
+    border: 1px solid #ff00ea; /* Rote Umrandung */
+    border-radius: 8px; /* Abgerundete Ecken */
+    padding: 15px; /* Innenabstand */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Schatten für Tiefe */
+    z-index: 1000; /* Über anderen Elementen */
+    transition: opacity 0.3s ease; /* Übergang für die Sichtbarkeit */
+}
+
+/* Benachrichtigung sichtbar */
+.notification.show {
+    display: block; /* Sichtbar */
+    opacity: 1; /* Voll sichtbar */
+}
+
+/* Benachrichtigung versteckt */
+.notification.hidden {
+    display: none; /* Versteckt, wenn die Klasse 'hidden' vorhanden ist */
+    opacity: 0; /* Unsichtbar */
+}
+
+/* Button innerhalb der Benachrichtigung */
+.notification button {
+    margin-top: 10px; /* Abstand nach oben */
+    background-color: #28a745; /* Grüner Hintergrund */
+    color: white; /* Weißer Text */
+    border: none; /* Keine Umrandung */
+    padding: 10px; /* Innenabstand */
+    border-radius: 4px; /* Abgerundete Ecken */
+    cursor: pointer; /* Zeiger-Cursor */
+    transition: background-color 0.3s; /* Übergang für Hover-Effekt */
+}
+
+.notification button:hover {
+    background-color: #218838; /* Dunklerer Grünton bei Hover */
+}
+    </style>
+</html>
